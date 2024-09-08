@@ -55,12 +55,12 @@ fun SplashScreen(){
                 painter = painterResource(id = R.drawable.sombrero_chef),
                 contentDescription = null,
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.size(200.dp)
+                modifier = Modifier.size(250.dp)
             )
             Text(
                 text = "Chef\nRecipes",
                 style = TextStyle(
-                    fontSize = 32.sp,               // Tamaño del texto
+                    fontSize = 40.sp,               // Tamaño del texto
                     color = Color.White,            // Color del texto
                     fontWeight = FontWeight.Bold,   // Peso de la fuente
                     fontStyle = FontStyle.Italic,   // Estilo de fuente
@@ -71,7 +71,7 @@ fun SplashScreen(){
     }
 }
 
-@Preview(widthDp = 300, heightDp = 600)
+@Preview(showBackground = true)
 @Composable
 fun SplashScreenPreview() {
     Laboratorio6Theme {

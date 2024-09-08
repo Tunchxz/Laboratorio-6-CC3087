@@ -1,3 +1,45 @@
+<!-- res/values/strings.xml -->
 <resources>
     <string name="app_name">Laboratorio 6</string>
+
+    <!-- Nombres de recetas -->
+    <string name="receta_1">Pastel de Chocolate</string>
+
+    <!-- Descripciones de recetas -->
+    <string name="descripcion_1">
+        Si eres amante del chocolate, esta receta de pastel de chocolate te conquistará desde el
+        primer bocado. Con una textura esponjosa y un sabor intenso, es el postre perfecto para
+        cualquier ocasión, ya sea una celebración especial o simplemente para disfrutar con una
+        taza de café en la tarde.
+    </string>
+
+    <!-- Lista de compras de recetas -->
+    <string name="lista_de_compras_1">
+        2 tazas de harina\n
+        1 ½ tazas de azúcar\n
+        ¾ taza de cacao en polvo sin azúcar\n
+        1 ½ cucharaditas de polvo de hornear\n
+        1 ½ cucharaditas de bicarbonato de sodio\n
+        1 cucharadita de sal\n
+        2 huevos grandes\n
+        1 taza de leche\n
+        ½ taza de aceite vegetal\n
+        2 cucharaditas de extracto de vainilla\n
+        1 taza de agua caliente
+    </string>
+
+    <!-- Preparacion de recetas -->
+    <string name="preparacion_1">
+        1. Precalienta el horno a 180°C (350°F) y engrasa ligeramente un molde para pastel.\n
+        \n2. Mezcla los ingredientes secos: en un tazón grande, tamiza la harina, el azúcar, el cacao,
+        el polvo de hornear, el bicarbonato y la sal. Asegúrate de que todo esté bien combinado.\n
+        \n3. Incorpora los ingredientes húmedos: agrega los huevos, la leche, el aceite y el extracto
+        de vainilla a la mezcla de ingredientes secos. Bate hasta obtener una masa suave y homogénea.\n
+        \n4. Añade el agua caliente poco a poco, sin dejar de batir. Esto ayudará a que la mezcla quede
+        más ligera y aireada. La masa será bastante líquida, pero es normal.\n
+        \n5. Hornea: vierte la mezcla en el molde preparado y hornea durante 30-35 minutos, o hasta
+        que al insertar un palillo en el centro, este salga limpio.\n
+        \n6. Deja enfriar: una vez horneado, deja que el pastel se enfríe en el molde durante unos 10
+        minutos antes de desmoldar. Coloca el pastel sobre una rejilla para que se enfríe completamente.
+    </string>
 </resources>
