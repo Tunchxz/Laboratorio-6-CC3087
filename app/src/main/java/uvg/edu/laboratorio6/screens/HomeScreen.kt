@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -46,6 +47,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.DrawerValue
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
+
 @Composable
 fun HomeScreen() {
     var selectedCategory by remember { mutableStateOf("POSTRES") }
@@ -121,7 +123,7 @@ fun HomeScreen() {
                                 painter = painterResource(recipe.imageRes),
                                 contentDescription = recipe.title,
                                 modifier = Modifier
-                                    .fillMaxWidth()
+                                    .size(180.dp) // Asigna un tamaño fijo a todas las imágenes
                                     .clickable {
                                         selectedRecipeIndex = recipesList.indexOf(recipe)
                                     }
