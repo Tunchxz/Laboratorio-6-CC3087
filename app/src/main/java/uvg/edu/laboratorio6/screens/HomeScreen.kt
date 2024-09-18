@@ -41,7 +41,7 @@ import uvg.edu.laboratorio6.ui.theme.Laboratorio6Theme
 
 @Composable
 fun RecipeScreen() {
-    var selectedCategory by remember { mutableStateOf("ENTREES") }
+    var selectedCategory by remember { mutableStateOf("ENTRADAS") }
 
     Column(
         modifier = Modifier
@@ -57,7 +57,7 @@ fun RecipeScreen() {
             IconButton(onClick = { /* Acción del menú lateral */ }) {
                 Icon(Icons.Default.Menu, contentDescription = "Menu")
             }
-            Text(text = "POPULAR RECIPES", style = MaterialTheme.typography.titleLarge)
+            Text(text = "RECETAS POPULARES", style = MaterialTheme.typography.titleLarge)
             IconButton(onClick = { /* Acción de búsqueda */ }) {
                 Icon(Icons.Default.Search, contentDescription = "Search")
             }
