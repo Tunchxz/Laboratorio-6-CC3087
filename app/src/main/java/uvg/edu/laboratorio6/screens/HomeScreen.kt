@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -48,7 +49,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 @Composable
 fun HomeScreen() {
     var selectedCategory by remember { mutableStateOf("POSTRES") }
-    var isFavorite by remember { mutableStateOf(false) } // Estado para controlar si está marcado como favorito
+    var isFavorite by remember { mutableStateOf(false) }
+    var selectedRecipeIndex by remember { mutableStateOf(0) } // Estado para la receta seleccionada
 
     // Lógica de menú lateral
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -101,20 +103,33 @@ fun HomeScreen() {
                 }
             }
 
-            // Tarjeta de receta
+            // Tarjeta de receta seleccionada con cambio al hacer scroll
             Card(
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)
                 ) {
-                    Image(
-                        painter = painterResource(R.drawable.pastel_de_chocolate),
-                        contentDescription = "Pastel de Chocolate",
+                    LazyRow( // LazyRow para cambiar la receta principal al hacer scroll
                         modifier = Modifier
                             .fillMaxWidth()
-                            .height(180.dp)
-                    )
+                            .height(180.dp),
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        items(recipesList) { recipe ->
+                            Image(
+                                painter = painterResource(recipe.imageRes),
+                                contentDescription = recipe.title,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        selectedRecipeIndex = recipesList.indexOf(recipe)
+                                    }
+                            )
+                        }
+                    }
+
+                    val selectedRecipe = recipesList[selectedRecipeIndex]
 
                     Row(
                         modifier = Modifier
@@ -123,13 +138,13 @@ fun HomeScreen() {
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Text(text = "Pastel de Chocolate", style = MaterialTheme.typography.titleLarge)
+                        Text(text = selectedRecipe.title, style = MaterialTheme.typography.titleLarge)
 
-                        IconButton(onClick = { isFavorite = !isFavorite }) { // Cambiar el estado al hacer clic
+                        IconButton(onClick = { isFavorite = !isFavorite }) {
                             Icon(
                                 imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
                                 contentDescription = "Favorite",
-                                tint = if (isFavorite) Color.Red else Color.Gray // Cambiar el color según el estado
+                                tint = if (isFavorite) Color.Red else Color.Gray
                             )
                         }
                     }
@@ -157,20 +172,20 @@ fun HomeScreen() {
                     ) {
                         Row {
                             Icon(Icons.Default.CheckCircle, contentDescription = "Time")
-                            Text(text = "5HR", modifier = Modifier.padding(start = 4.dp))
+                            Text(text = selectedRecipe.time, modifier = Modifier.padding(start = 4.dp))
                         }
                         Row {
                             Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
-                            Text(text = "65", modifier = Modifier.padding(start = 4.dp))
+                            Text(text = selectedRecipe.likes.toString(), modifier = Modifier.padding(start = 4.dp))
                         }
                         Row {
                             Icon(Icons.Default.AccountBox, contentDescription = "Comments")
-                            Text(text = "10", modifier = Modifier.padding(start = 4.dp))
+                            Text(text = selectedRecipe.comments.toString(), modifier = Modifier.padding(start = 4.dp))
                         }
                     }
 
                     Text(
-                        text = "El pastel de chocolate es un postre delicioso para compartir en familia.",
+                        text = selectedRecipe.description,
                         modifier = Modifier.padding(top = 8.dp),
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center
@@ -180,6 +195,26 @@ fun HomeScreen() {
         }
     }
 }
+
+// Datos de ejemplo para las recetas
+data class Recipe(
+    val title: String,
+    val imageRes: Int,
+    val time: String,
+    val likes: Int,
+    val comments: Int,
+    val description: String
+)
+
+val recipesList = listOf(
+    Recipe("Pastel de Chocolate", R.drawable.pastel_de_chocolate, "5HR", 65, 10, "El pastel de chocolate es un postre delicioso para compartir en familia."),
+    Recipe("Ensalada César", R.drawable.ensalada_cesar, "30MIN", 50, 8, "Una ensalada fresca y ligera, perfecta como entrada."),
+    Recipe("Pizza Margarita", R.drawable.pizza_margarita, "1HR", 90, 15, "Una pizza clásica italiana con tomate, albahaca y queso mozzarella."),
+    Recipe("Sopa de Tomate", R.drawable.sopa_de_tomate, "45MIN", 40, 5, "Una sopa rica y reconfortante con sabor a tomate."),
+    Recipe("Tacos al Pastor", R.drawable.tacos_al_pastor, "2HR", 120, 20, "Tacos deliciosos con carne de cerdo marinada."),
+    Recipe("Brownies", R.drawable.brownies, "1HR", 70, 12, "Brownies esponjosos y llenos de chocolate.")
+)
+
 
 @Preview(showBackground = true)
 @Composable
