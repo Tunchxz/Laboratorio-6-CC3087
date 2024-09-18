@@ -29,11 +29,15 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uvg.edu.laboratorio6.R
+import uvg.edu.laboratorio6.ui.theme.Laboratorio6Theme
 
 @Composable
 fun RecipeScreen() {
@@ -47,22 +51,23 @@ fun RecipeScreen() {
         // Title and Icons at the top
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceBetween,
+            verticalAlignment = Alignment.CenterVertically
         ) {
             IconButton(onClick = { /* Acción del menú lateral */ }) {
                 Icon(Icons.Default.Menu, contentDescription = "Menu")
             }
-            Text(text = "POPULAR RECIPES", style = MaterialTheme.typography.bodySmall)
+            Text(text = "POPULAR RECIPES", style = MaterialTheme.typography.titleLarge)
             IconButton(onClick = { /* Acción de búsqueda */ }) {
                 Icon(Icons.Default.Search, contentDescription = "Search")
             }
         }
 
         LazyRow(
-            modifier = Modifier.padding(vertical = 16.dp),
+            modifier = Modifier.padding(vertical = 25.dp).align(Alignment.CenterHorizontally),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            items(listOf("APPETIZERS", "ENTREES", "DESSERT")) { category ->
+            items(listOf("APERITIVOS", "POSTRES", "ENTRADAS")) { category ->
                 Text(
                     text = category,
                     modifier = Modifier
@@ -77,7 +82,6 @@ fun RecipeScreen() {
             }
         }
 
-
         // Recipe card
         Card(
             modifier = Modifier.fillMaxWidth(),
@@ -87,8 +91,8 @@ fun RecipeScreen() {
             ) {
                 // Image
                 Image(
-                    painter = painterResource(R.drawable.pollo_asado), // Reemplazar con tu imagen
-                    contentDescription = "Prime Rib Roast",
+                    painter = painterResource(R.drawable.pastel_de_chocolate),
+                    contentDescription = "Pastel de Chocolate",
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(180.dp)
@@ -98,18 +102,21 @@ fun RecipeScreen() {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween
+                        .padding(top = 8.dp)
+                        .align(Alignment.CenterHorizontally),
+                    horizontalArrangement = Arrangement.Center,
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = "Prime Rib Roast", style = MaterialTheme.typography.bodyLarge)
+                    Text(text = "Pastel de Chocolate", style = MaterialTheme.typography.titleLarge)
                     IconButton(onClick = { /* Acción del favorito */ }) {
                         Icon(Icons.Default.FavoriteBorder, contentDescription = "Favorite")
                     }
                 }
 
+
                 // Rating stars
                 Row(
-                    modifier = Modifier.padding(top = 4.dp)
+                    modifier = Modifier.padding(top = 4.dp).align(Alignment.CenterHorizontally)
                 ) {
                     repeat(4) {
                         Icon(
@@ -127,7 +134,7 @@ fun RecipeScreen() {
 
                 // Time, likes, and comments
                 Row(
-                    modifier = Modifier.padding(top = 8.dp),
+                    modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Row {
@@ -136,21 +143,31 @@ fun RecipeScreen() {
                     }
                     Row {
                         Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
-                        Text(text = "685", modifier = Modifier.padding(start = 4.dp))
+                        Text(text = "65", modifier = Modifier.padding(start = 4.dp))
                     }
                     Row {
                         Icon(Icons.Default.AccountBox, contentDescription = "Comments")
-                        Text(text = "107", modifier = Modifier.padding(start = 4.dp))
+                        Text(text = "10", modifier = Modifier.padding(start = 4.dp))
                     }
                 }
 
                 // Description
                 Text(
-                    text = "The Prime Rib Roast is a classic and tender cut of beef...",
-                    modifier = Modifier.padding(top = 8.dp),
-                    style = MaterialTheme.typography.bodyLarge
+                    text = "El pastel de chocolate es un postre delicioso para compartir en familia y degustar algo dulce, su preparación es sencilla con una buena valoración en cuanto al sabor.",
+                    modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
+                    style = MaterialTheme.typography.bodyLarge,
+                    textAlign = TextAlign.Center
+
                 )
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun HomeScreenPreview() {
+    Laboratorio6Theme {
+        RecipeScreen()
     }
 }
