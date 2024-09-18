@@ -2,11 +2,6 @@ package uvg.edu.laboratorio6.screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material.icons.filled.Settings
-import androidx.compose.material.icons.filled.Star
 import androidx.compose.ui.unit.sp
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -21,7 +16,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import uvg.edu.laboratorio6.R
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DrawerContent(
     drawerState: DrawerState,
@@ -29,7 +23,6 @@ fun DrawerContent(
 ) {
     val coroutineScope = rememberCoroutineScope()
 
-    // Contenedor completo del menú con fondo rojo
     ModalDrawerSheet(
         modifier = Modifier
             .background(Color(0xFFEB5757))
@@ -39,10 +32,9 @@ fun DrawerContent(
                 .fillMaxHeight()
                 .background(Color(0xFFEB5757))
                 .padding(16.dp),
-            verticalArrangement = Arrangement.SpaceBetween // El perfil queda en la parte inferior
+            verticalArrangement = Arrangement.SpaceBetween
         ) {
 
-            // Opciones del menú
             Column {
                 NavigationDrawerItem(
                     label = { Text("POPULAR RECIPES", color = Color.White, fontSize = 20.sp) },
@@ -58,7 +50,7 @@ fun DrawerContent(
                         unselectedTextColor = Color.White
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp)) // Separador
+                Spacer(modifier = Modifier.height(16.dp))
                 NavigationDrawerItem(
                     label = { Text("SAVED RECIPES", color = Color.White, fontSize = 20.sp) },
                     selected = false,
@@ -73,7 +65,7 @@ fun DrawerContent(
                         unselectedTextColor = Color.White
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp)) // Separador
+                Spacer(modifier = Modifier.height(16.dp))
                 NavigationDrawerItem(
                     label = { Text("SHOPPING LIST", color = Color.White, fontSize = 20.sp) },
                     selected = false,
@@ -88,7 +80,7 @@ fun DrawerContent(
                         unselectedTextColor = Color.White
                     )
                 )
-                Spacer(modifier = Modifier.height(16.dp)) // Separador
+                Spacer(modifier = Modifier.height(16.dp))
                 NavigationDrawerItem(
                     label = { Text("SETTINGS", color = Color.White, fontSize = 20.sp) },
                     selected = false,
@@ -105,7 +97,6 @@ fun DrawerContent(
                 )
             }
 
-            // Contenido del perfil en la parte inferior
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
@@ -113,15 +104,15 @@ fun DrawerContent(
                 horizontalAlignment = Alignment.Start
             ) {
                 Icon(
-                    painter = painterResource(id = R.drawable.aimep3), // Cambia la imagen al recurso correcto
+                    painter = painterResource(id = R.drawable.aimep3),
                     contentDescription = "My Profile",
                     tint = Color.Unspecified,
-                    modifier = Modifier.size(50.dp) // Tamaño ajustado para el ícono del perfil
+                    modifier = Modifier.size(50.dp)
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(
                     text = "MARISOL DOMÍNGUEZ",
-                    color = Color.White, // Texto en blanco
+                    color = Color.White,
                     fontSize = 20.sp,
                     textAlign = TextAlign.Left
                 )
@@ -130,25 +121,23 @@ fun DrawerContent(
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen() {
     val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
     val coroutineScope = rememberCoroutineScope()
 
-    // Configuración del drawer con el contenido
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerContent(drawerState = drawerState) { route ->
-                // Manejar las rutas de navegación según el ítem seleccionado
+            DrawerContent(drawerState = drawerState) {
+
             }
         }
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             IconButton(onClick = { coroutineScope.launch { drawerState.open() } }) {
                 Icon(
-                    painter = painterResource(id = R.drawable.ic_three_stripes), // Ícono del menú
+                    painter = painterResource(id = R.drawable.ic_three_stripes),
                     contentDescription = "Abrir menú",
                     tint = Color.Unspecified
                 )
