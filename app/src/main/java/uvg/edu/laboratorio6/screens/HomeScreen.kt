@@ -38,127 +38,140 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uvg.edu.laboratorio6.R
 import uvg.edu.laboratorio6.ui.theme.Laboratorio6Theme
+import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.DrawerState
+import androidx.compose.material3.rememberDrawerState
+import androidx.compose.material3.DrawerValue
+import kotlinx.coroutines.launch
+import androidx.compose.runtime.rememberCoroutineScope
 
 @Composable
-fun RecipeScreen() {
-    var selectedCategory by remember { mutableStateOf("ENTRADAS") }
+fun HomeScreen() {
+    var selectedCategory by remember { mutableStateOf("POSTRES") }
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
+    // Lógica de menú lateral
+    val drawerState = rememberDrawerState(DrawerValue.Closed)
+    val coroutineScope = rememberCoroutineScope()
+
+    ModalNavigationDrawer(
+        drawerState = drawerState,
+        drawerContent = {
+            DrawerContent(drawerState = drawerState) { route ->
+                // Aquí manejas las rutas dependiendo de la opción seleccionada en el menú
+            }
+        }
     ) {
-        // Title and Icons at the top
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
         ) {
-            IconButton(onClick = { /* Acción del menú lateral */ }) {
-                Icon(Icons.Default.Menu, contentDescription = "Menu")
-            }
-            Text(text = "RECETAS POPULARES", style = MaterialTheme.typography.titleLarge)
-            IconButton(onClick = { /* Acción de búsqueda */ }) {
-                Icon(Icons.Default.Search, contentDescription = "Search")
-            }
-        }
-
-        LazyRow(
-            modifier = Modifier.padding(vertical = 25.dp).align(Alignment.CenterHorizontally),
-            horizontalArrangement = Arrangement.SpaceAround
-        ) {
-            items(listOf("APERITIVOS", "POSTRES", "ENTRADAS")) { category ->
-                Text(
-                    text = category,
-                    modifier = Modifier
-                        .clickable { selectedCategory = category }
-                        .padding(horizontal = 16.dp),
-                    style = if (category == selectedCategory) {
-                        MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.primary) // Adjust `colorScheme` if using Material 3
-                    } else {
-                        MaterialTheme.typography.labelSmall
-                    }
-                )
-            }
-        }
-
-        // Recipe card
-        Card(
-            modifier = Modifier.fillMaxWidth(),
-        ) {
-            Column(
-                modifier = Modifier.padding(16.dp)
+            // Barra superior con íconos y título
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
             ) {
-                // Image
-                Image(
-                    painter = painterResource(R.drawable.pastel_de_chocolate),
-                    contentDescription = "Pastel de Chocolate",
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(180.dp)
-                )
-
-                // Title and rating
-                Row(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp)
-                        .align(Alignment.CenterHorizontally),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Text(text = "Pastel de Chocolate", style = MaterialTheme.typography.titleLarge)
-                    IconButton(onClick = { /* Acción del favorito */ }) {
-                        Icon(Icons.Default.FavoriteBorder, contentDescription = "Favorite")
-                    }
+                IconButton(onClick = { coroutineScope.launch { drawerState.open() } }) {
+                    Icon(Icons.Default.Menu, contentDescription = "Menu")
                 }
+                Text(text = "RECETAS POPULARES", style = MaterialTheme.typography.titleLarge)
+                IconButton(onClick = { /* Acción de búsqueda */ }) {
+                    Icon(Icons.Default.Search, contentDescription = "Search")
+                }
+            }
 
-
-                // Rating stars
-                Row(
-                    modifier = Modifier.padding(top = 4.dp).align(Alignment.CenterHorizontally)
-                ) {
-                    repeat(4) {
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Star",
-                            tint = Color.Yellow
-                        )
-                    }
-                    Icon(
-                        imageVector = Icons.Default.Star,
-                        contentDescription = "Empty Star",
-                        tint = Color.Gray
+            LazyRow(
+                modifier = Modifier
+                    .padding(vertical = 25.dp)
+                    .align(Alignment.CenterHorizontally),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                items(listOf("APERITIVOS", "POSTRES", "ENTRADAS")) { category ->
+                    Text(
+                        text = category,
+                        modifier = Modifier
+                            .clickable { selectedCategory = category }
+                            .padding(horizontal = 16.dp),
+                        style = if (category == selectedCategory) {
+                            MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.primary)
+                        } else {
+                            MaterialTheme.typography.labelSmall
+                        }
                     )
                 }
+            }
 
-                // Time, likes, and comments
-                Row(
-                    modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
-                    horizontalArrangement = Arrangement.SpaceBetween
+            // Tarjeta de receta
+            Card(
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Column(
+                    modifier = Modifier.padding(16.dp)
                 ) {
-                    Row {
-                        Icon(Icons.Default.CheckCircle, contentDescription = "Time")
-                        Text(text = "5HR", modifier = Modifier.padding(start = 4.dp))
+                    Image(
+                        painter = painterResource(R.drawable.pastel_de_chocolate),
+                        contentDescription = "Pastel de Chocolate",
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(180.dp)
+                    )
+
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(top = 8.dp),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(text = "Pastel de Chocolate", style = MaterialTheme.typography.titleLarge)
+                        IconButton(onClick = { /* Acción de favorito */ }) {
+                            Icon(Icons.Default.FavoriteBorder, contentDescription = "Favorite")
+                        }
                     }
-                    Row {
-                        Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
-                        Text(text = "65", modifier = Modifier.padding(start = 4.dp))
+
+                    Row(
+                        modifier = Modifier.padding(top = 4.dp).align(Alignment.CenterHorizontally)
+                    ) {
+                        repeat(4) {
+                            Icon(
+                                imageVector = Icons.Default.Star,
+                                contentDescription = "Star",
+                                tint = Color.Yellow
+                            )
+                        }
+                        Icon(
+                            imageVector = Icons.Default.Star,
+                            contentDescription = "Empty Star",
+                            tint = Color.Gray
+                        )
                     }
-                    Row {
-                        Icon(Icons.Default.AccountBox, contentDescription = "Comments")
-                        Text(text = "10", modifier = Modifier.padding(start = 4.dp))
+
+                    Row(
+                        modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
+                        horizontalArrangement = Arrangement.SpaceBetween
+                    ) {
+                        Row {
+                            Icon(Icons.Default.CheckCircle, contentDescription = "Time")
+                            Text(text = "5HR", modifier = Modifier.padding(start = 4.dp))
+                        }
+                        Row {
+                            Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
+                            Text(text = "65", modifier = Modifier.padding(start = 4.dp))
+                        }
+                        Row {
+                            Icon(Icons.Default.AccountBox, contentDescription = "Comments")
+                            Text(text = "10", modifier = Modifier.padding(start = 4.dp))
+                        }
                     }
+
+                    Text(
+                        text = "El pastel de chocolate es un postre delicioso para compartir en familia...",
+                        modifier = Modifier.padding(top = 8.dp),
+                        style = MaterialTheme.typography.bodyLarge,
+                        textAlign = TextAlign.Center
+                    )
                 }
-
-                // Description
-                Text(
-                    text = "El pastel de chocolate es un postre delicioso para compartir en familia y degustar algo dulce, su preparación es sencilla con una buena valoración en cuanto al sabor.",
-                    modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
-                    style = MaterialTheme.typography.bodyLarge,
-                    textAlign = TextAlign.Center
-
-                )
             }
         }
     }
@@ -168,6 +181,6 @@ fun RecipeScreen() {
 @Composable
 fun HomeScreenPreview() {
     Laboratorio6Theme {
-        RecipeScreen()
+        HomeScreen()
     }
 }
