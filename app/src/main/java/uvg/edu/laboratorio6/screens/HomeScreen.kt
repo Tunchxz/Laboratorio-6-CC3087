@@ -14,6 +14,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.CheckCircle
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
@@ -44,10 +45,10 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.DrawerValue
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
-
 @Composable
 fun HomeScreen() {
     var selectedCategory by remember { mutableStateOf("POSTRES") }
+    var isFavorite by remember { mutableStateOf(false) } // Estado para controlar si está marcado como favorito
 
     // Lógica de menú lateral
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -56,9 +57,7 @@ fun HomeScreen() {
     ModalNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
-            DrawerContent(drawerState = drawerState) { route ->
-                // Aquí manejas las rutas dependiendo de la opción seleccionada en el menú
-            }
+            DrawerContent(drawerState = drawerState) { route -> }
         }
     ) {
         Column(
@@ -125,8 +124,13 @@ fun HomeScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(text = "Pastel de Chocolate", style = MaterialTheme.typography.titleLarge)
-                        IconButton(onClick = { /* Acción de favorito */ }) {
-                            Icon(Icons.Default.FavoriteBorder, contentDescription = "Favorite")
+
+                        IconButton(onClick = { isFavorite = !isFavorite }) { // Cambiar el estado al hacer clic
+                            Icon(
+                                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                                contentDescription = "Favorite",
+                                tint = if (isFavorite) Color.Red else Color.Gray // Cambiar el color según el estado
+                            )
                         }
                     }
 
@@ -166,7 +170,7 @@ fun HomeScreen() {
                     }
 
                     Text(
-                        text = "El pastel de chocolate es un postre delicioso para compartir en familia...",
+                        text = "El pastel de chocolate es un postre delicioso para compartir en familia.",
                         modifier = Modifier.padding(top = 8.dp),
                         style = MaterialTheme.typography.bodyLarge,
                         textAlign = TextAlign.Center
