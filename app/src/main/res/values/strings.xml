@@ -1,9 +1,13 @@
 <!-- res/values/strings.xml -->
 <resources>
     <string name="app_name">Laboratorio 6</string>
-
     <!-- Nombres de recetas -->
-    <string name="receta_1">Pastel de Chocolate</string>
+    <string name="receta_1">Pastel de Cocolate</string>
+    <string name="receta_2">Ensalada César</string>
+    <string name="receta_3">Pizza Margarita</string>
+    <string name="receta_4">Sopa de Tomate</string>
+    <string name="receta_5">Tacos al Pastor</string>
+    <string name="receta_6">Brownies</string>
 
     <!-- Descripciones de recetas -->
     <string name="descripcion_1">
@@ -11,6 +15,44 @@
         primer bocado. Con una textura esponjosa y un sabor intenso, es el postre perfecto para
         cualquier ocasión, ya sea una celebración especial o simplemente para disfrutar con una
         taza de café en la tarde.
+    </string>
+    <string name="descripcion_2">
+        La ensalada César es uno de los platos más populares y versátiles. Es perfecta como entrada,
+        acompañamiento o incluso como plato principal si la enriqueces con pollo o camarones. Con su
+        aderezo cremoso, crujientes trozos de pan tostado (crutones) y la combinación perfecta de
+        lechuga fresca y queso parmesano, esta ensalada es sencilla pero deliciosa. A continuación,
+        te mostramos cómo preparar una versión básica y fácil de este clásico que seguramente
+        encantará a todos.
+    </string>
+    <string name="descripcion_3">
+        La pizza margarita es un clásico italiano que destaca por su sencillez y frescura. Con solo
+        unos pocos ingredientes – una base crujiente, salsa de tomate, mozzarella y albahaca fresca
+        – es la representación perfecta de la cocina italiana en su forma más pura. Esta pizza es
+        ideal para una comida rápida y deliciosa, y puedes prepararla desde cero en casa. Sigue
+        estos pasos y disfruta de una pizza casera digna de cualquier pizzería.
+    </string>
+    <string name="descripcion_4">
+        La sopa de tomate es un plato reconfortante y delicioso que puede disfrutarse en cualquier
+        época del año. Con su sabor vibrante y suave textura, es perfecta para una comida ligera o
+        como entrada en un almuerzo o cena. Esta receta es sencilla, utilizando ingredientes frescos
+        como tomates maduros, hierbas aromáticas y un toque de crema para una consistencia más rica.
+        Prepárala fácilmente en casa y disfruta de una sopa que es tan nutritiva como sabrosa.
+    </string>
+    <string name="descripcion_5">
+        Los tacos al pastor son una de las joyas más representativas de la comida callejera mexicana.
+        Con su combinación de carne de cerdo marinada en una mezcla de chiles, especias y piña, estos
+        tacos ofrecen una explosión de sabores entre lo dulce, lo salado y lo picante. Preparar tacos
+        al pastor en casa es más fácil de lo que parece, y el resultado es un platillo delicioso y
+        auténtico que encantará a todos. Ya sea en una reunión familiar o en una noche de tacos,
+        ¡estos tacos siempre serán un éxito!
+    </string>
+    <string name="descripcion_6">
+        Los brownies son uno de esos postres irresistibles que combinan la riqueza del chocolate con
+        una textura suave y ligeramente densa. Perfectos para cualquier ocasión, estos bocaditos son
+        fáciles de preparar y siempre un éxito entre los amantes del dulce. Ya sea que los prefieras
+        con una textura más húmeda o un poco más crujiente en los bordes, esta receta básica te
+        guiará para hacer los brownies perfectos desde la comodidad de tu cocina. ¡Prepáralos y
+        comparte con amigos o disfruta de un momento indulgente!
     </string>
 
     <!-- Lista de compras de recetas -->
@@ -27,6 +69,69 @@
         2 cucharaditas de extracto de vainilla\n
         1 taza de agua caliente
     </string>
+    <string name="lista_de_compras_2">
+        1 lechuga romana (o lechuga fresca de tu elección)\n
+        1 pechuga de pollo (opcional, para agregar proteínas)\n
+        ½ taza de queso parmesano rallado\n
+        1 taza de crutones\n
+        1 diente de ajo\n
+        3 cucharadas de mayonesa\n
+        1 cucharadita de mostaza de Dijon\n
+        2 cucharadas de jugo de limón\n
+        4 cucharadas de aceite de oliva\n
+        1 cucharadita de salsa Worcestershire (salsa inglesa)\n
+        4 filetes de anchoas (opcional)\n
+        Sal y pimienta al gusto
+    </string>
+    <string name="lista_de_compras_3">
+        250 g de masa para pizza (puedes hacerla casera o comprarla ya preparada)\n
+        200 g de salsa de tomate (preferiblemente casera o de buena calidad)\n
+        250 g de queso mozzarella (fresco o rallado)\n
+        10-12 hojas de albahaca fresca\n
+        2 cucharadas de aceite de oliva\n
+        Sal y pimienta al gusto\n
+        Harina (para estirar la masa)
+    </string>
+    <string name="lista_de_compras_4">
+        1 kg de tomates frescos (pueden ser pelados o enteros)\n
+        1 cebolla mediana, picada\n
+        2 dientes de ajo, picados\n
+        4 tazas de caldo de verduras o pollo\n
+        2 cucharadas de aceite de oliva\n
+        1 cucharada de azúcar (opcional, para ajustar la acidez)\n
+        1 hoja de laurel\n
+        ½ taza de crema o leche (opcional, para una versión más cremosa)\n
+        Sal y pimienta al gusto\n
+        Albahaca fresca o perejil para decorar (opcional)
+    </string>
+    <string name="lista_de_compras_5">
+        1 kg de carne de cerdo (lomo o pierna, en rodajas finas)\n
+        4 chiles guajillo, desvenados y remojados\n
+        2 chiles anchos, desvenados y remojados\n
+        2 dientes de ajo\n
+        ½ cebolla\n
+        1 taza de jugo de piña\n
+        ¼ de taza de vinagre blanco\n
+        1 cucharada de orégano\n
+        1 cucharadita de comino\n
+        1 cucharada de achiote en pasta\n
+        Sal y pimienta al gusto\n
+        Tortillas de maíz\n
+        Piña fresca en rodajas\n
+        Cebolla picada y cilantro fresco para acompañar\n
+        Limones para servir
+    </string>
+    <string name="lista_de_compras_6">
+        200 g de chocolate negro o semiamargo\n
+        150 g de mantequilla\n
+        1 taza de azúcar\n
+        3 huevos\n
+        1 taza de harina\n
+        ¼ de taza de cacao en polvo\n
+        1 cucharadita de extracto de vainilla\n
+        ½ cucharadita de sal\n
+        1 taza de nueces o chips de chocolate (opcional)
+    </string>
 
     <!-- Preparacion de recetas -->
     <string name="preparacion_1">
@@ -41,5 +146,112 @@
         que al insertar un palillo en el centro, este salga limpio.\n
         \n6. Deja enfriar: una vez horneado, deja que el pastel se enfríe en el molde durante unos 10
         minutos antes de desmoldar. Coloca el pastel sobre una rejilla para que se enfríe completamente.
+    </string>
+    <string name="preparacion_2">
+        1. Prepara el aderezo: en un tazón pequeño, machaca el diente de ajo con un poco de sal
+        hasta formar una pasta. Añade las anchoas (si las usas) y machácalas también. Incorpora la
+        mayonesa, la mostaza, el jugo de limón, la salsa Worcestershire y mezcla bien. Poco a poco,
+        añade el aceite de oliva mientras sigues batiendo para emulsionar el aderezo. Prueba y
+        ajusta la sal y la pimienta al gusto.\n
+        \n2. Cocina el pollo (opcional): si deseas agregar pollo a la ensalada, sazona la pechuga
+        con sal y pimienta, y ásala a la parrilla o cocina en una sartén con un poco de aceite de
+        oliva hasta que esté dorada y bien cocida. Luego, córtala en tiras finas o en cubos.\n
+        \n3. Prepara los crutones: si no tienes crutones comprados, corta pan en cubos pequeños y
+        tuéstalos en una sartén con un poco de aceite de oliva, ajo y una pizca de sal hasta que
+        estén dorados y crujientes.\n
+        \n4. Lava y corta la lechuga: lava bien la lechuga romana y córtala en trozos medianos.
+        Sécala bien para que no arruine el aderezo.\n
+        \n5. Mezcla la ensalada: en un tazón grande, coloca la lechuga romana y agrega un poco del
+        aderezo. Mezcla bien para cubrir todas las hojas. Añade los crutones, el queso parmesano
+        rallado y el pollo (si lo incluyes). Vierte un poco más de aderezo por encima, al gusto.\n
+        \n6. Sirve: para la presentación final, añade un toque extra de queso parmesano rallado y un
+        poco de pimienta negra recién molida. Sirve inmediatamente para disfrutar de la frescura y
+        el crujido de los ingredientes.
+    </string>
+    <string name="preparacion_3">
+        1. Precalienta el horno: calienta el horno a 220°C (425°F), preferiblemente con una piedra
+        para pizza o una bandeja dentro para que esté bien caliente.\n
+        \n2. Prepara la masa: si usas masa comprada, déjala reposar a temperatura ambiente durante
+        unos 20-30 minutos antes de usarla. Espolvorea un poco de harina sobre una superficie plana
+        y estira la masa en forma de círculo, procurando que quede delgada y uniforme.\n
+        \n3. Prepara la salsa: si decides hacer una salsa de tomate casera, mezcla tomates triturados
+        con un poco de aceite de oliva, sal y pimienta. Puedes agregarle un toque de orégano seco o
+        ajo si prefieres más sabor.\n
+        \n4. Arma la pizza: extiende la salsa de tomate sobre la masa estirada, asegurándote de dejar
+        un borde libre para que quede crujiente. Añade la mozzarella de manera uniforme, ya sea
+        cortada en rodajas finas o desmenuzada si es rallada.\n
+        \n5. Hornea la pizza: coloca la pizza sobre la piedra caliente o la bandeja en el horno y
+        hornea durante 10-12 minutos, o hasta que la masa esté dorada y el queso burbujee y se haya
+        derretido por completo.\n
+        \n6. Añade la albahaca y el aceite de oliva: una vez que la pizza esté lista, retírala del
+        horno y añade las hojas de albahaca fresca por encima. Rocía un poco de aceite de oliva extra
+        virgen para darle un toque de sabor adicional.\n
+        \n7. Sirve: corta la pizza en porciones y sírvela de inmediato. ¡Disfruta de una pizza
+        margarita recién hecha con ingredientes frescos y sencillos!
+    </string>
+    <string name="preparacion_4">
+        1. Prepara los tomates: si usas tomates frescos, hiérvelos durante 1-2 minutos en agua
+        caliente para facilitar el pelado. Luego, pélalos y córtalos en trozos grandes, eliminando
+        las semillas si lo prefieres. También puedes usar tomates enlatados si buscas una opción
+        más rápida.\n
+        \n2. Sofríe la cebolla y el ajo: en una olla grande, calienta el aceite de oliva a fuego
+        medio. Añade la cebolla picada y el ajo, y cocina hasta que estén tiernos y translúcidos,
+        unos 5-7 minutos.\n
+        \n3. Añade los tomates: incorpora los tomates troceados a la olla y revuelve bien. Cocina
+        durante unos 10 minutos para que los tomates se deshagan y suelten todo su jugo.
+        \n4. Añade el caldo y los condimentos: vierte el caldo de verduras o pollo sobre la mezcla
+        de tomates. Añade la hoja de laurel y ajusta con sal, pimienta y una cucharada de azúcar si
+        deseas reducir la acidez de los tomates. Deja que la sopa hierva a fuego lento durante unos
+        20-25 minutos.\n
+        \n5. Tritura la sopa: una vez cocida, retira la hoja de laurel y, utilizando una licuadora
+        de mano o una licuadora normal, tritura la sopa hasta obtener una textura suave. Si
+        prefieres una sopa más cremosa, añade la crema o leche y mezcla bien.\n
+        \n6. Calienta nuevamente: regresa la sopa a la olla si la licuaste por separado y caliéntala
+        suavemente durante unos minutos más. Ajusta la sal y la pimienta al gusto.\n
+        \n7. Sirve: sirve la sopa de tomate caliente, decorada con un chorrito de crema, un poco de
+        albahaca fresca o perejil, y acompáñala con pan crujiente o crotones.
+    </string>
+    <string name="preparacion_5">
+        1. Prepara la marinada: en una licuadora, agrega los chiles guajillo y ancho remojados, el
+        ajo, la cebolla, el jugo de piña, el vinagre, el orégano, el comino, la pasta de achiote,
+        sal y pimienta. Licúa hasta obtener una mezcla homogénea. Si está muy espesa, añade un
+        poco de agua.\n
+        \n2. Marina la carne: coloca las rodajas de carne de cerdo en un tazón grande o en una bolsa
+        de plástico resellable y vierte la marinada sobre la carne. Asegúrate de que todas las piezas
+        estén bien cubiertas. Cubre y deja marinar en el refrigerador durante al menos 4 horas,
+        aunque es ideal dejarla toda la noche para intensificar el sabor.\n
+        \n3. Cocina la carne: tradicionalmente, los tacos al pastor se cocinan en un trompo vertical,
+        pero en casa puedes asar la carne en una parrilla o sartén caliente. Cocina las rodajas de
+        cerdo a fuego medio-alto hasta que estén doradas por ambos lados y bien cocidas. Una vez
+        listas, córtalas en tiras finas.\n
+        \n4. Asa la piña: corta la piña en rodajas y ásalas ligeramente en la parrilla o sartén
+        hasta que estén doradas. Luego córtala en trozos pequeños.\n
+        \n5. Prepara los tacos: calienta las tortillas de maíz en un comal o sartén hasta que estén
+        suaves y calientes. Coloca un poco de carne al pastor en cada tortilla, añade piña asada,
+        picada y cilantro fresco al gusto. Sirve con rodajas de limón para exprimir sobre los tacos.\n
+        \n6. Disfruta: sirve los tacos al pastor inmediatamente, acompañados de una salsa de tu
+        preferencia y más piña asada si lo deseas.
+    </string>
+    <string name="preparacion_6">
+        1. Precalienta el horno: calienta el horno a 180°C (350°F). Engrasa ligeramente un molde
+        cuadrado de 20x20 cm y cúbrelo con papel encerado para facilitar el desmolde.\n
+        \n2. Derrite el chocolate y la mantequilla: en una cacerola pequeña a fuego bajo, derrite el
+        chocolate y la mantequilla, removiendo constantemente hasta que la mezcla sea suave y
+        brillante. Retira del fuego y deja enfriar un poco.\n
+        \n3. Mezcla los ingredientes secos: en un tazón aparte, tamiza la harina, el cacao en polvo
+        y la sal. Mezcla bien y reserva.\n
+        \n4. Prepara la mezcla base: en un tazón grande, bate los huevos con el azúcar hasta que la
+        mezcla esté suave y esponjosa. Añade el extracto de vainilla y luego incorpora la mezcla de
+        chocolate derretido, batiendo bien hasta integrar todos los ingredientes.\n
+        \n5. Incorpora los ingredientes secos: añade poco a poco la mezcla de harina a los
+        ingredientes húmedos, revolviendo suavemente hasta que todo esté combinado. Si lo deseas,
+        puedes añadir nueces picadas o chips de chocolate en este punto para darle un toque extra.\n
+        \n6. Hornea los brownies: vierte la mezcla en el molde preparado y alisa la superficie con
+        una espátula. Hornea durante 20-25 minutos, o hasta que al insertar un palillo en el centro,
+        salga con algunas migas húmedas (no completamente limpio, ya que los brownies deben ser
+        fudgy en el centro).\n
+        \n7. Deja enfriar: una vez horneados, deja que los brownies se enfríen completamente en el
+        molde antes de cortarlos en cuadrados. Si deseas un corte más limpio, puedes refrigerarlos
+        por unos minutos antes de cortarlos.
     </string>
 </resources>

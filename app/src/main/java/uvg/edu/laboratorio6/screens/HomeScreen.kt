@@ -4,15 +4,16 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.CheckCircle
@@ -37,22 +38,44 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import uvg.edu.laboratorio6.R
-import uvg.edu.laboratorio6.ui.theme.Laboratorio6Theme
 import androidx.compose.material3.ModalNavigationDrawer
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.material3.DrawerValue
 import kotlinx.coroutines.launch
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.navigation.NavHostController
+
+// Datos de ejemplo para las recetas
+data class Recipe(
+    val name: Int,
+    val image: Int,
+    val time: String,
+    val likes: Int,
+    val comments: Int,
+    val description: Int,
+    val shopping: Int,
+    val preparation: Int
+)
+
+val recipesList = listOf(
+    Recipe(R.string.receta_1, R.drawable.pastel_de_chocolate, "5HR", 65, 10, R.string.descripcion_1, R.string.lista_de_compras_1, R.string.preparacion_1),
+    Recipe(R.string.receta_2, R.drawable.ensalada_cesar, "30MIN", 50, 8, R.string.descripcion_2, R.string.lista_de_compras_2, R.string.preparacion_2),
+    Recipe(R.string.receta_3, R.drawable.pizza_margarita, "1HR", 90, 15, R.string.descripcion_3, R.string.lista_de_compras_3, R.string.preparacion_3),
+    Recipe(R.string.receta_4, R.drawable.sopa_de_tomate, "45MIN", 40, 5, R.string.descripcion_4, R.string.lista_de_compras_4, R.string.preparacion_4),
+    Recipe(R.string.receta_5, R.drawable.tacos_al_pastor, "2HR", 120, 20, R.string.descripcion_5, R.string.lista_de_compras_5, R.string.preparacion_5),
+    Recipe(R.string.receta_6, R.drawable.brownies, "1HR", 70, 12, R.string.descripcion_6, R.string.lista_de_compras_6, R.string.preparacion_6)
+)
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavHostController) {
     var selectedCategory by remember { mutableStateOf("POSTRES") }
     var isFavorite by remember { mutableStateOf(false) }
-    var selectedRecipeIndex by remember { mutableStateOf(0) } // Estado para la receta seleccionada
 
     // Lógica de menú lateral
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -84,6 +107,7 @@ fun HomeScreen() {
                 }
             }
 
+            // Selector de categorías
             LazyRow(
                 modifier = Modifier
                     .padding(vertical = 25.dp)
@@ -97,131 +121,123 @@ fun HomeScreen() {
                             .clickable { selectedCategory = category }
                             .padding(horizontal = 16.dp),
                         style = if (category == selectedCategory) {
-                            MaterialTheme.typography.labelSmall.copy(color = MaterialTheme.colorScheme.primary)
+                            MaterialTheme.typography.labelMedium.copy(color = MaterialTheme.colorScheme.primary)
                         } else {
-                            MaterialTheme.typography.labelSmall
+                            MaterialTheme.typography.labelMedium
                         }
                     )
                 }
             }
 
-            // Tarjeta de receta seleccionada con cambio al hacer scroll
-            Card(
+            // LazyRow con tarjetas completas
+            LazyRow(
                 modifier = Modifier.fillMaxWidth(),
+                contentPadding = PaddingValues(horizontal = 10.dp),
+                horizontalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                Column(
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    LazyRow( // LazyRow para cambiar la receta principal al hacer scroll
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(180.dp),
-                        horizontalArrangement = Arrangement.Center
-                    ) {
-                        items(recipesList) { recipe ->
-                            Image(
-                                painter = painterResource(recipe.imageRes),
-                                contentDescription = recipe.title,
-                                modifier = Modifier
-                                    .size(180.dp) // Asigna un tamaño fijo a todas las imágenes
-                                    .clickable {
-                                        selectedRecipeIndex = recipesList.indexOf(recipe)
-                                    }
-                            )
-                        }
-                    }
-
-                    val selectedRecipe = recipesList[selectedRecipeIndex]
-
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 8.dp),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = selectedRecipe.title, style = MaterialTheme.typography.titleLarge)
-
-                        IconButton(onClick = { isFavorite = !isFavorite }) {
-                            Icon(
-                                imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
-                                contentDescription = "Favorite",
-                                tint = if (isFavorite) Color.Red else Color.Gray
-                            )
-                        }
-                    }
-
-                    Row(
-                        modifier = Modifier.padding(top = 4.dp).align(Alignment.CenterHorizontally)
-                    ) {
-                        repeat(4) {
-                            Icon(
-                                imageVector = Icons.Default.Star,
-                                contentDescription = "Star",
-                                tint = Color.Yellow
-                            )
-                        }
-                        Icon(
-                            imageVector = Icons.Default.Star,
-                            contentDescription = "Empty Star",
-                            tint = Color.Gray
+                items(recipesList) { recipe ->
+                    RecipeCard(recipe, isFavorite, onFavoriteClick = { isFavorite = !isFavorite }) {
+                        // Navegar a la pantalla de detalles cuando se hace clic en la imagen
+                        navController.navigate(
+                            "recipeDetail/${recipe.image}/${recipe.name}/${recipe.description}/${recipe.shopping}/${recipe.preparation}"
                         )
                     }
-
-                    Row(
-                        modifier = Modifier.padding(top = 8.dp).align(Alignment.CenterHorizontally),
-                        horizontalArrangement = Arrangement.SpaceBetween
-                    ) {
-                        Row {
-                            Icon(Icons.Default.CheckCircle, contentDescription = "Time")
-                            Text(text = selectedRecipe.time, modifier = Modifier.padding(start = 4.dp))
-                        }
-                        Row {
-                            Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
-                            Text(text = selectedRecipe.likes.toString(), modifier = Modifier.padding(start = 4.dp))
-                        }
-                        Row {
-                            Icon(Icons.Default.AccountBox, contentDescription = "Comments")
-                            Text(text = selectedRecipe.comments.toString(), modifier = Modifier.padding(start = 4.dp))
-                        }
-                    }
-
-                    Text(
-                        text = selectedRecipe.description,
-                        modifier = Modifier.padding(top = 8.dp),
-                        style = MaterialTheme.typography.bodyLarge,
-                        textAlign = TextAlign.Center
-                    )
                 }
             }
         }
     }
 }
 
-// Datos de ejemplo para las recetas
-data class Recipe(
-    val title: String,
-    val imageRes: Int,
-    val time: String,
-    val likes: Int,
-    val comments: Int,
-    val description: String
-)
-
-val recipesList = listOf(
-    Recipe("Pastel de Chocolate", R.drawable.pastel_de_chocolate, "5HR", 65, 10, "El pastel de chocolate es un postre delicioso para compartir en familia."),
-    Recipe("Ensalada César", R.drawable.ensalada_cesar, "30MIN", 50, 8, "Una ensalada fresca y ligera, perfecta como entrada."),
-    Recipe("Pizza Margarita", R.drawable.pizza_margarita, "1HR", 90, 15, "Una pizza clásica italiana con tomate, albahaca y queso mozzarella."),
-    Recipe("Sopa de Tomate", R.drawable.sopa_de_tomate, "45MIN", 40, 5, "Una sopa rica y reconfortante con sabor a tomate."),
-    Recipe("Tacos al Pastor", R.drawable.tacos_al_pastor, "2HR", 120, 20, "Tacos deliciosos con carne de cerdo marinada."),
-    Recipe("Brownies", R.drawable.brownies, "1HR", 70, 12, "Brownies esponjosos y llenos de chocolate.")
-)
-
-
-@Preview(showBackground = true)
 @Composable
-fun HomeScreenPreview() {
-    Laboratorio6Theme {
-        HomeScreen()
+fun RecipeCard(recipe: Recipe, isFavorite: Boolean, onFavoriteClick: () -> Unit, onImageClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .width(300.dp) // Establece un ancho fijo para las tarjetas
+            .padding(8.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            // Imagen de la receta
+            Image(
+                painter = painterResource(recipe.image),
+                contentDescription = null,
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(180.dp)
+                    .clip(RoundedCornerShape(10.dp))
+                    .clickable { onImageClick() } // Ejecutar la acción cuando se hace clic
+            )
+
+            // Rating con estrellas
+            Row(
+                modifier = Modifier
+                    .padding(top = 10.dp)
+                    .align(Alignment.CenterHorizontally)
+            ) {
+                repeat(4) {
+                    Icon(
+                        imageVector = Icons.Default.Star,
+                        contentDescription = "Star",
+                        tint = Color.Yellow
+                    )
+                }
+                Icon(
+                    imageVector = Icons.Default.Star,
+                    contentDescription = "Empty Star",
+                    tint = Color.Gray
+                )
+            }
+
+            // Título y botón de favorito
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = 10.dp),
+                horizontalArrangement = Arrangement.SpaceBetween,
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(text = stringResource(recipe.name), style = MaterialTheme.typography.titleLarge)
+                IconButton(onClick = onFavoriteClick) {
+                    Icon(
+                        imageVector = if (isFavorite) Icons.Default.Favorite else Icons.Default.FavoriteBorder,
+                        contentDescription = "Favorite",
+                        tint = if (isFavorite) Color.Red else Color.Gray
+                    )
+                }
+            }
+
+            // Información adicional: tiempo, likes, comentarios
+            Row(
+                modifier = Modifier
+                    .padding(vertical = 5.dp)
+                    .fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceEvenly
+            ) {
+                Row {
+                    Icon(Icons.Default.CheckCircle, contentDescription = "Time")
+                    Text(text = recipe.time, modifier = Modifier.padding(start = 4.dp))
+                }
+                Row {
+                    Icon(Icons.Default.ThumbUp, contentDescription = "Likes")
+                    Text(text = recipe.likes.toString(), modifier = Modifier.padding(start = 4.dp))
+                }
+                Row {
+                    Icon(Icons.Default.AccountBox, contentDescription = "Comments")
+                    Text(text = recipe.comments.toString(), modifier = Modifier.padding(start = 4.dp))
+                }
+            }
+
+            // Descripción de la receta
+            Text(
+                text = stringResource(recipe.description),
+                modifier = Modifier.padding(vertical = 10.dp),
+                style = MaterialTheme.typography.bodyLarge,
+                textAlign = TextAlign.Center,
+                maxLines = 3,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
     }
 }
