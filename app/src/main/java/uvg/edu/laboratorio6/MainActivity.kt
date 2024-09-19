@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import uvg.edu.laboratorio6.screens.HomeScreen
+import uvg.edu.laboratorio6.screens.SplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,8 +33,11 @@ fun MyApp() {
 
     NavHost(
         navController = navController,
-        startDestination = "home" // Pantalla inicial
+        startDestination = "loading" // Pantalla inicial
     ) {
+        composable("loading") {
+            SplashScreen(navController)
+        }
         composable("home") {
             HomeScreen(navController)
         }

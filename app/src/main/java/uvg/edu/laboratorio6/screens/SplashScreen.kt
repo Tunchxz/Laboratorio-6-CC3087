@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -19,14 +20,22 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
+import kotlinx.coroutines.delay
 import uvg.edu.laboratorio6.R
-import uvg.edu.laboratorio6.ui.theme.Laboratorio6Theme
 
 @Composable
-fun SplashScreen(){
+fun SplashScreen(navController: NavHostController){
+    LaunchedEffect(Unit) {
+        // Simulamos el tiempo de carga de 30 segundos
+        delay(10000L) // 10,000 milisegundos = 10 segundos
+        navController.navigate("home") {
+            popUpTo("loading") { inclusive = true } // Eliminamos la pantalla de carga del backstack
+        }
+    }
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -68,13 +77,5 @@ fun SplashScreen(){
                 )
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SplashScreenPreview() {
-    Laboratorio6Theme {
-        SplashScreen()
     }
 }
